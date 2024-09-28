@@ -25,11 +25,3 @@ export const getUserById = async id => {
   )
   return result.rows[0]
 }
-
-// Nueva función para obtener todos los usuarios
-export const getAllUsers = async () => {
-  const result = await pool.query(
-    'SELECT id, firstname AS "firstName", lastname AS "lastName", email FROM users'
-  )
-  return result.rows
-}
