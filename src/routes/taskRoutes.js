@@ -56,6 +56,13 @@ const router = Router()
  *     tags: [Tareas]
  *     security:
  *       - bearerAuth: []
+ *     parameters:
+ *       - name: Authorization
+ *         in: header
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Token de autenticación
  *     responses:
  *       200:
  *         description: Lista de tareas.
@@ -65,6 +72,10 @@ const router = Router()
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/Task'
+ *       401:
+ *         description: Requiere Autorización
+ *       500:
+ *         description: Error del servidor
  */
 router.get('/tasks', protect, getTasks) // Obtener todas las tareas del usuario
 
@@ -76,6 +87,13 @@ router.get('/tasks', protect, getTasks) // Obtener todas las tareas del usuario
  *     tags: [Tareas]
  *     security:
  *       - bearerAuth: []
+ *     parameters:
+ *       - name: Authorization
+ *         in: header
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Token de autenticación
  *     requestBody:
  *       required: true
  *       content:
@@ -85,6 +103,16 @@ router.get('/tasks', protect, getTasks) // Obtener todas las tareas del usuario
  *     responses:
  *       201:
  *         description: La tarea fue creada exitosamente.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Task'
+ *       400:
+ *         description: Alguno de los datos requeridos está incompleto
+ *       401:
+ *         description: Requiere Autorización
+ *       500:
+ *         description: Error del servidor
  */
 router.post('/tasks', protect, createNewTask) // Crear una nueva tarea
 
@@ -103,6 +131,12 @@ router.post('/tasks', protect, createNewTask) // Crear una nueva tarea
  *           type: integer
  *         required: true
  *         description: ID de la tarea
+ *       - name: Authorization
+ *         in: header
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Token de autenticación
  *     responses:
  *       200:
  *         description: Detalles de la tarea.
@@ -110,8 +144,14 @@ router.post('/tasks', protect, createNewTask) // Crear una nueva tarea
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Task'
+ *       400:
+ *         description: ID Inválido
+ *       401:
+ *         description: Requiere Autorización
  *       404:
- *         description: Tarea no encontrada.
+ *         description: Tarea inexistente
+ *       500:
+ *         description: Error del servidor
  */
 router.get('/tasks/:id', protect, getTaskByIdController) // Obtener una tarea específica por ID
 
@@ -130,6 +170,12 @@ router.get('/tasks/:id', protect, getTaskByIdController) // Obtener una tarea es
  *           type: integer
  *         required: true
  *         description: ID de la tarea
+ *       - name: Authorization
+ *         in: header
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Token de autenticación
  *     requestBody:
  *       required: true
  *       content:
@@ -139,6 +185,18 @@ router.get('/tasks/:id', protect, getTaskByIdController) // Obtener una tarea es
  *     responses:
  *       200:
  *         description: La tarea fue actualizada exitosamente.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Task'
+ *       400:
+ *         description: ID Inválido
+ *       401:
+ *         description: Requiere Autorización
+ *       404:
+ *         description: Tarea inexistente
+ *       500:
+ *         description: Error del servidor
  */
 router.put('/tasks/:id', protect, updateTaskById) // Actualizar una tarea por ID
 
@@ -157,9 +215,23 @@ router.put('/tasks/:id', protect, updateTaskById) // Actualizar una tarea por ID
  *           type: integer
  *         required: true
  *         description: ID de la tarea
+ *       - name: Authorization
+ *         in: header
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Token de autenticación
  *     responses:
  *       200:
- *         description: La tarea fue eliminada exitosamente.
+ *         description: La tarea fue eliminada exitosamente
+ *       400:
+ *         description: ID Inválido
+ *       401:
+ *         description: Requiere Autorización
+ *       404:
+ *         description: Tarea inexistente
+ *       500:
+ *         description: Error del servidor
  */
 router.delete('/tasks/:id', protect, deleteTaskById) // Eliminar una tarea por ID
 

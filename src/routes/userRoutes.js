@@ -68,6 +68,7 @@ const router = Router()
  *     summary: Registrar un nuevo usuario
  *     tags: [Usuarios]
  *     requestBody:
+ *       description: Los datos del usuario a registrar.
  *       required: true
  *       content:
  *         application/json:
@@ -75,9 +76,11 @@ const router = Router()
  *             $ref: '#/components/schemas/UserRegister'
  *     responses:
  *       201:
- *         description: El usuario fue creado exitosamente.
+ *         $ref: '#/components/responses/Token'
  *       400:
- *         description: El usuario ya existe.
+ *         description: El usuario ya se encuentra registrado / Alguno de los datos requeridos está incompleto.
+ *       500:
+ *         description: Error del servidor.
  */
 router.post('/users', registerUser)
 
@@ -88,6 +91,7 @@ router.post('/users', registerUser)
  *     summary: Iniciar sesión
  *     tags: [Usuarios]
  *     requestBody:
+ *       description: Credenciales necesarias para iniciar sesión (email y contraseña).
  *       required: true
  *       content:
  *         application/json:
@@ -95,7 +99,7 @@ router.post('/users', registerUser)
  *             $ref: '#/components/schemas/UserLogin'
  *     responses:
  *       200:
- *         description: El usuario inició sesión correctamente.
+ *         $ref: '#/components/responses/Token'
  *       400:
  *         description: Contraseña incorrecta.
  *       404:

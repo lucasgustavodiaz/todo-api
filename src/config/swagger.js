@@ -1,3 +1,4 @@
+import { response } from 'express'
 import swaggerJsdoc from 'swagger-jsdoc'
 import swaggerUi from 'swagger-ui-express'
 
@@ -8,13 +9,15 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'API de Usuarios y Tareas',
+      title: 'TODOs API',
       version: '1.0.0',
-      description: 'Documentación de la API para gestionar usuarios y tareas'
+      description:
+        'Este documento contiene la documentación para utilizar la API de TODOs\n\n' +
+        '[ Base URL: https://unlpam-todo-api.vercel.app ]'
     },
     servers: [
       {
-        url: `http://localhost:${PORT}` // Cambia la URL si usas otro host
+        url: `https://unlpam-todo-api.vercel.app` // Cambia la URL si usas otro host
       }
     ],
     components: {
@@ -23,6 +26,20 @@ const options = {
           type: 'http',
           scheme: 'bearer',
           bearerFormat: 'JWT'
+        }
+      },
+      responses: {
+        Token: {
+          description: 'Operación exitosa. Retorna un Token.',
+          content: {
+            'application/json': {
+              schema: {
+                type: 'string',
+                example:
+                  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
+              }
+            }
+          }
         }
       }
     },

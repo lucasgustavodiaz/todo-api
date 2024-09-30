@@ -10,9 +10,9 @@ export const protect = (req, res, next) => {
       req.user = decoded
       next()
     } catch (error) {
-      return res.status(401).json({ message: 'Not authorized' })
+      return res.status(401).json({ message: 'Requiere Autorización' })
     }
   } else {
-    return res.status(401).json({ message: 'Not authorized, no token' })
+    return res.status(401).json({ message: 'Requiere Autorización, no token' })
   }
 }
