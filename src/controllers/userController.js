@@ -44,7 +44,7 @@ export const loginUser = async (req, res) => {
         lastName: user.lastName,
         email: user.email
       },
-      token
+      jwt: token
     })
   } catch (error) {
     res.status(500).json({ error: 'Error del servidor' })

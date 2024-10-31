@@ -76,7 +76,7 @@ const router = Router()
  *             $ref: '#/components/schemas/UserRegister'
  *     responses:
  *       201:
- *         $ref: '#/components/responses/Token'
+ *         $ref: '#/components/responses/JWT'
  *       400:
  *         description: El usuario ya se encuentra registrado / Alguno de los datos requeridos está incompleto.
  *       500:
@@ -99,7 +99,7 @@ router.post('/users', registerUser)
  *             $ref: '#/components/schemas/UserLogin'
  *     responses:
  *       200:
- *         $ref: '#/components/responses/Token'
+ *         $ref: '#/components/responses/JWT'
  *       400:
  *         description: Contraseña incorrecta.
  *       404:
@@ -121,7 +121,7 @@ router.post('/users/login', loginUser)
  *           - name: Authorization
  *             in: header
  *             required: true
- *             description: Token de autenticación.
+ *             description: JWT de autenticación.
  *             schema:
  *               type: string
  *     responses:

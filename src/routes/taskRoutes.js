@@ -62,7 +62,7 @@ const router = Router()
  *         required: true
  *         schema:
  *           type: string
- *         description: Token de autenticación
+ *         description: JWT de autenticación
  *     responses:
  *       200:
  *         description: Lista de tareas.
@@ -93,7 +93,7 @@ router.get('/tasks', protect, getTasks) // Obtener todas las tareas del usuario
  *         required: true
  *         schema:
  *           type: string
- *         description: Token de autenticación
+ *         description: JWT de autenticación
  *     requestBody:
  *       required: true
  *       content:
@@ -136,7 +136,7 @@ router.post('/tasks', protect, createNewTask) // Crear una nueva tarea
  *         required: true
  *         schema:
  *           type: string
- *         description: Token de autenticación
+ *         description: JWT de autenticación
  *     responses:
  *       200:
  *         description: Detalles de la tarea.
@@ -175,7 +175,7 @@ router.get('/tasks/:id', protect, getTaskByIdController) // Obtener una tarea es
  *         required: true
  *         schema:
  *           type: string
- *         description: Token de autenticación
+ *         description: JWT de autenticación
  *     requestBody:
  *       required: true
  *       content:
@@ -220,7 +220,7 @@ router.put('/tasks/:id', protect, updateTaskById) // Actualizar una tarea por ID
  *         required: true
  *         schema:
  *           type: string
- *         description: Token de autenticación
+ *         description: JWT de autenticación
  *     responses:
  *       200:
  *         description: La tarea fue eliminada exitosamente

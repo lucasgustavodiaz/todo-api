@@ -29,8 +29,8 @@ const options = {
         }
       },
       responses: {
-        Token: {
-          description: 'Operación exitosa. Retorna un Token.',
+        JWT: {
+          description: 'Operación exitosa. Retorna un JWT.',
           content: {
             'application/json': {
               schema: {
