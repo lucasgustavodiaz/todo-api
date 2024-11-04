@@ -8,6 +8,14 @@ import {
 
 export const registerUser = async (req, res) => {
   const { firstName, lastName, email, password } = req.body
+
+  // Validar campos vacíos
+  if (!firstName || !lastName || !email || !password) {
+    return res
+      .status(400)
+      .json({ message: 'Todos los campos son obligatorios' })
+  }
+
   try {
     const existingUser = await findUserByEmail(email)
     if (existingUser)
@@ -26,6 +34,14 @@ export const registerUser = async (req, res) => {
 
 export const loginUser = async (req, res) => {
   const { email, password } = req.body
+
+  // Validar campos vacíos
+  if (!email || !password) {
+    return res
+      .status(400)
+      .json({ message: 'Todos los campos son obligatorios' })
+  }
+
   try {
     const user = await findUserByEmail(email)
     if (!user) return res.status(404).json({ message: 'El usuario no existe' })
