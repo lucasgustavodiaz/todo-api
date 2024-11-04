@@ -26,7 +26,7 @@ export const registerUser = async (req, res) => {
       expiresIn: '1h'
     })
 
-    res.status(201).json({ user, token })
+    res.status(201).json({ user, jwt: token })
   } catch (error) {
     res.status(500).json({ error: 'Error del servidor' })
   }
